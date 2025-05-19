@@ -1,114 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comments Section</title>
-    <link rel="stylesheet" href="/styles.css">
-    <script src="/teacherScript.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teachers</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>Comments</h1>
-        
-        <div class="comments-container">
-            <% comments.forEach(comment => { %>
-                <div class="comment-card">
-                    <div class="comment-header">
-                        <% if (comment.pfpURL) { %>
-                            <img src="<%= comment.pfpURL %>" alt="Profile" class="profile-pic">
-                        <% } else { %>
-                            <div class="profile-pic placeholder"></div>
-                        <% } %>
-                        <div class="comment-meta">
-                            <span class="app-name"><%= comment.app %></span>
-                            <div class="rating">
-                                <% for(let i = 0; i < 5; i++) { %>
-                                    <span class="star <%= i < comment.rating ? 'filled' : '' %>">★</span>
-                                <% } %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-text"><%= comment.comment %></div>
-                </div>
-            <% }); %>
-        </div>
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b328976aa49a1b7b46b89c3/1530039440176-O24B7OCR4WPIAI62JZTW/CompSci.High_Circle_Logo.png?format=750w" alt="School Logo" />
+    </div>
+    <div class="nav-links">
+      <a href="/">Teachers</a>
+      <a href="/ratings">Comments & Ratings</a>
+    </div>
+  </nav>
 
-        <div class="add-comment">
-            <h2>Add a Comment</h2>
-            <form id="commentForm">
-                <div class="form-group">
-                    <label for="app">App:</label>
-                    <input type="text" id="app" name="app" required>
-                </div>
-                <div class="form-group">
-                    <label for="comment">Comment:</label>
-                    <textarea id="comment" name="comment" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="pfpURL">Profile Picture URL:</label>
-                    <input type="url" id="pfpURL" name="pfpURL">
-                </div>
-                <div class="form-group">
-                    <label>Rating:</label>
-                    <div class="rating-input">
-                        <% for(let i = 1; i <= 5; i++) { %>
-                            <span class="star" data-value="<%= i %>">★</span>
-                        <% } %>
-                        <input type="hidden" id="rating" name="rating" value="0">
-                    </div>
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+  <div class="container">
+    <h1>Apps</h1>
+
+    <div class="form-section">
+      <h2>Add a New APP</h2>
+      <form>
+        <label>commer: </label>
+        <input type="text" name="name" required />
+
+        <label>Rating: </label>
+        <input type="text" name="department" />
+
+        <label>pfpURL: </label>
+        <input type="text" name="pfpURL" />
+
+        <button type="submit">Submit</button>
+      </form>
     </div>
 
-    <script>
-        document.querySelectorAll('.rating-input .star').forEach(star => {
-            star.addEventListener('click', () => {
-                const value = parseInt(star.getAttribute('data-value'));
-                document.getElementById('rating').value = value;
-                
-                // Update star display
-                document.querySelectorAll('.rating-input .star').forEach((s, index) => {
-                    if (index < value) {
-                        s.classList.add('filled');
-                    } else {
-                        s.classList.remove('filled');
-                    }
-                });
-            });
-        });
-
-        document.getElementById('commentForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+    <div class="Apps-grid">
+      <!-- Sample app card with review section like in the PDF -->
+      <div class="app-card">
+        <img src="https://via.placeholder.com/300x150?text=App+Logo" alt="App logo" />
+        <div class="app-card-content">
+          <h2>Commerciality</h2>
+          <p><strong>Rating:</strong> 4.5</p>
+          <button onclick="deleteApp('123')">Delete</button>
+          
+          <!-- Review section from the PDF -->
+          <div class="review-section">
+            <div class="review-header">
+              <div class="user-info">Use Anonymous</div>
+              <div class="rating">4.5</div>
+            </div>
+            <div class="review-content">
+              I've used this app for my class, my students loved it and found it very engaging.
+            </div>
+            <div class="review-actions">
+              <div>15h ago</div>
+              <div class="reply-button">reply →</div>
+            </div>
             
-            const formData = {
-                app: document.getElementById('app').value,
-                comment: document.getElementById('comment').value,
-                pfpURL: document.getElementById('pfpURL').value,
-                rating: parseInt(document.getElementById('rating').value)
-            };
+            <div class="reply-section">
+              <div class="reply-user">user > KPI</div>
+              <div class="reply-content">
+                Thank you for the great description, it sounds very helpful. I'm going to try this app with my class.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional sample app cards -->
+      <div class="app-card">
+        <img src="https://via.placeholder.com/300x150?text=Eddit+App" alt="Eddit logo" />
+        <div class="app-card-content">
+          <h2>Eddit</h2>
+          <p><strong>Rating:</strong> 4.2</p>
+          <button onclick="deleteApp('124')">Delete</button>
+        </div>
+      </div>
+      
+      <div class="app-card">
+        <img src="https://via.placeholder.com/300x150?text=Math+Helper" alt="Math Helper logo" />
+        <div class="app-card-content">
+          <h2>Math Helper</h2>
+          <p><strong>Rating:</strong> 4.8</p>
+          <button onclick="deleteApp('125')">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            try {
-                const response = await fetch('/add/comment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    window.location.reload();
-                } else {
-                    alert('Error adding comment');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error adding comment');
-            }
-        });
-    </script>
+  <script src="teacherScript.js"></script>
 </body>
 </html>
