@@ -31,7 +31,7 @@
         <input type="text" name="department" />
 
         <label>pfpURL: </label>
-        <input type="text" name="image" />
+        <input type="text" name="pfpURL" />
 
         <button type="submit">Submit</button>
       </form>
@@ -40,7 +40,7 @@
     <div class="Apps-grid">
       <% for (let i = 0; i < app.length; i++) { %>
         <div class="app-card">
-          <img src="<%= app[i].image %>" alt="<%= app[i].comment %>" />
+          <img src="<%= app[i].pfpURL %>" alt="<%= app[i].comment %>" />
           <div class="app-card-content">
             <h2><%= app[i].name %></h2>
             <p><strong>Rating:</strong> <%= app[i].rating %></p>
