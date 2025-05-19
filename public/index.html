@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments Section</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/teacherScript.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Comments</h1>
+        
+        <div class="comments-container">
+            <% comments.forEach(comment => { %>
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <% if (comment.pfpURL) { %>
+                            <img src="<%= comment.pfpURL %>" alt="Profile" class="profile-pic">
+                        <% } else { %>
+                            <div class="profile-pic placeholder"></div>
+                        <% } %>
+                        <div class="comment-meta">
+                            <span class="app-name"><%= comment.app %></span>
+                            <div class="rating">
+                                <% for(let i = 0; i < 5; i++) { %>
+                                    <span class="star <%= i < comment.rating ? 'filled' : '' %>">★</span>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-text"><%= comment.comment %></div>
+                </div>
+            <% }); %>
+        </div>
+
+        <div class="add-comment">
+            <h2>Add a Comment</h2>
+            <form id="commentForm">
+                <div class="form-group">
+                    <label for="app">App:</label>
+                    <input type="text" id="app" name="app" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea id="comment" name="comment" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pfpURL">Profile Picture URL:</label>
+                    <input type="url" id="pfpURL" name="pfpURL">
+                </div>
+                <div class="form-group">
+                    <label>Rating:</label>
+                    <div class="rating-input">
+                        <% for(let i = 1; i <= 5; i++) { %>
+                            <span class="star" data-value="<%= i %>">★</span>
+                        <% } %>
+                        <input type="hidden" id="rating" name="rating" value="0">
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.rating-input .star').forEach(star => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                document.getElementById('rating').value = value;
+                
+                // Update star display
+                document.querySelectorAll('.rating-input .star').forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.add('filled');
+                    } else {
+                        s.classList.remove('filled');
+                    }
+                });
+            });
+        });
+
+        document.getElementById('commentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                app: document.getElementById('app').value,
+                comment: document.getElementById('comment').value,
+                pfpURL: document.getElementById('pfpURL').value,
+                rating: parseInt(document.getElementById('rating').value)
+            };
+
+            try {
+                const response = await fetch('/add/comment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Error adding comment');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error adding comment');
+            }
+        });
+    </script>
+</body>
+</html>
