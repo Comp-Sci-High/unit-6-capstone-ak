@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teachers</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elder Search APP</title>
+  <link rel="stylesheet" href="script.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-logo">
-      <img src="https://images.squarespace-cdn.com/content/v1/5b328976aa49a1b7b46b89c3/1530039440176-O24B7OCR4WPIAI62JZTW/CompSci.High_Circle_Logo.png?format=750w" alt="School Logo" />
-    </div>
-    <div class="nav-links">
-      <a href="/">Teachers</a>
-      <a href="/ratings">Comments & Ratings</a>
-    </div>
-  </nav>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Elder Search APP</h1>
+      <div class="comm-buttons">
+        <button>(c)</button>
+        <button>(d)</button>
+        <button>(e)</button>
+      </div>
+    </header>
 
-  <div class="container">
-    <h1>Apps</h1>
+    <nav class="main-nav">
+      <a href="#">Buser</a>
+      <a href="#">Innage</a>
+      <a href="#" class="active">Apps Review (4)</a>
+    </nav>
 
-    <div class="form-section">
-      <h2>Add a New APP</h2>
-      <form>
-        <label>commer: </label>
-        <input type="text" name="name" required />
+    <main class="app-main">
+      <aside class="sidebar">
+        <div class="logo-placeholder">Logo</div>
+        <div class="sidebar-menu">
+          <a href="#">userAbout</a>
+          <a href="#">Commerciality</a>
+          <a href="#">CO/Eddit</a>
+        </div>
+      </aside>
 
-        <label>Rating: </label>
-        <input type="text" name="department" />
-
-        <label>pfpURL: </label>
-        <input type="text" name="pfpURL" />
-
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
-    <div class="Apps-grid">
-      <!-- Sample app card with review section like in the PDF -->
-      <div class="app-card">
-        <img src="https://via.placeholder.com/300x150?text=App+Logo" alt="App logo" />
-        <div class="app-card-content">
-          <h2>Commerciality</h2>
-          <p><strong>Rating:</strong> 4.5</p>
-          <button onclick="deleteApp('123')">Delete</button>
-          
-          <!-- Review section from the PDF -->
-          <div class="review-section">
-            <div class="review-header">
-              <div class="user-info">Use Anonymous</div>
-              <div class="rating">4.5</div>
-            </div>
-            <div class="review-content">
-              I've used this app for my class, my students loved it and found it very engaging.
-            </div>
-            <div class="review-actions">
-              <div>15h ago</div>
-              <div class="reply-button">reply →</div>
-            </div>
-            
-            <div class="reply-section">
-              <div class="reply-user">user > KPI</div>
-              <div class="reply-content">
-                Thank you for the great description, it sounds very helpful. I'm going to try this app with my class.
-              </div>
-            </div>
+      <section class="content-area">
+        <div class="post">
+          <h2 class="post-title">Educational App Review</h2>
+          <p class="post-description">Sharing my experience with this classroom app that my students loved</p>
+          <div class="post-image">[App Screenshot]</div>
+          <div class="post-rating">
+            <span class="rating-stars">★★★★☆</span>
+            <span class="rating-value">4/5</span>
           </div>
         </div>
-      </div>
-      
-      <!-- Additional sample app cards -->
-      <div class="app-card">
-        <img src="https://via.placeholder.com/300x150?text=Eddit+App" alt="Eddit logo" />
-        <div class="app-card-content">
-          <h2>Eddit</h2>
-          <p><strong>Rating:</strong> 4.2</p>
-          <button onclick="deleteApp('124')">Delete</button>
-        </div>
-      </div>
-      
-      <div class="app-card">
-        <img src="https://via.placeholder.com/300x150?text=Math+Helper" alt="Math Helper logo" />
-        <div class="app-card-content">
-          <h2>Math Helper</h2>
-          <p><strong>Rating:</strong> 4.8</p>
-          <button onclick="deleteApp('125')">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <script src="teacherScript.js"></script>
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Search...">
+        </div>
+
+        <div class="comments-container">
+          <div class="comment">
+            <span class="user">Anonymous</span>
+            <span class="ratio">14:5</span>
+            <div class="comment-rating">
+              <span class="rating-stars">★★★★★</span>
+              <span class="rating-value">5/5</span>
+            </div>
+            <p>I've used this app for my class, my students loved it and found it very engaging.</p>
+            <div class="comment-footer">
+              <button class="reply-btn">Reply</button>
+            </div>
+          </div>
+
+          <div class="comment">
+            <span class="user">KPI</span>
+            <span class="ratio">4:6</span>
+            <div class="comment-rating">
+              <span class="rating-stars">★★★☆☆</span>
+              <span class="rating-value">3/5</span>
+            </div>
+            <p>Thank you for the great description, it sounds very helpful. I'm going to try this app with my class.</p>
+            <div class="comment-footer">
+              <button class="reply-btn">Reply</button>
+            </div>
+          </div>
+
+          <div class="comment-form">
+            <div class="rating-input">
+              <span>Rate:</span>
+              <select>
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+              </select>
+            </div>
+            <input type="text" placeholder="Add a comment...">
+            <button>Post</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

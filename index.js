@@ -20,6 +20,7 @@ const CommentSchema = new mongoose.Schema({
   pfpURL: { type: String },
   rating: { type: Number },
   app: { type: String },
+  postId:{ type: String},
 });
 
 const Comment = mongoose.model("Comment", CommentSchema, "Comments");
@@ -60,6 +61,49 @@ app.delete("/menu/delete/:comment", async (req, res) => {
   res.json(deletedComment);
 });
 
+const PostSchema = new mongoose.Schema({
+  title: { type: String },
+  descrption: { type: String },
+  image: { type: String },
+});
+
+const Post = mongoose.model("Post", PostSchema, "Posts");
+
+
+app.post("/post/add", async(req,res)=>{
+  const post = await new Post({
+    title:req.body.title,
+    description:req.body.description,
+    image:req.body.image,
+}).save()
+res.json(post)
+})
+
+app.get("/post",async(req,res)=>{
+  const app = await Post.find({})
+  res.render("post.ejs",{app})
+})
+app.get("/posts",async(req,res)=>{
+  const posts = await Post.find({})
+  res.json(posts)
+})
+
+app.patch("/menu/update/:post", async (req, res) => {
+  const updatedPost = await Menu.findOneAndUpdate(
+    { title: req.params.title },
+    { description: res.body.description },
+    { image: req.body. image},
+    { new: true }
+  );
+  res.json(updatedPost);
+});
+
+app.delete("/menu/delete/:post", async (req, res) => {
+  const deletedPost = await Menu.findOne({
+    post: req.params.post,
+  });
+  res.json(deletedPost);
+});
 
 
 async function startServer() {
@@ -73,3 +117,5 @@ async function startServer() {
 }
 
 startServer();
+
+
