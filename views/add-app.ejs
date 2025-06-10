@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Reviewer - Add App</title>
+  
+  <link rel="stylesheet" href="script.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">CS</div>
+      <h1>App Reviewer</h1>
+     <div class="header-buttons">
+        <a href="/reviewed-apps" class="reviewed-apps-btn">Reviewed Apps</a>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <div class="form-container">
+        <h2>Review an App</h2>
+        <form >
+          <div class="form-group">
+            <label for="title">App Name:</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+              <option value="">Select rating</option>
+              <option value="⭐">⭐</option>
+              <option value="⭐⭐">⭐⭐</option>
+              <option value="⭐⭐⭐">⭐⭐⭐</option>
+              <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+              <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="image">
+          </div>
+          
+          <div class="form-group">
+            <label for="description">Review:</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Submit Review</button>
+        </form>
+      </div>
+    </main>
+  </div>
+      <script src="script.js"></script> 
+</body>
+</html>

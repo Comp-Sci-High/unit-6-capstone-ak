@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Reviewer - Reviewed Apps</title>
+  <link rel="stylesheet" href="script.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">CS</div>
+      <h1>App Reviewer</h1>
+      <div class="header-buttons">
+        <a href="/" class="add-app-btn">Add New App</a>
+      </div>
+    </header>
+
+    <main class="content-area">
+      <div class="search-container">
+        <form action="/reviewed-apps" method="GET">
+          <input type="text" name="search" placeholder="Search reviewed apps..." value="">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+      <div class="apps-grid">
+        <% if (apps.length === 0) { %>
+          <p class="no-apps">No reviewed apps found.</p>
+        <% } else { %>
+          <% apps.forEach(app => { %>
+            <div class="app-card">
+              <% if (app.image) { %>
+                <img src="<%= app.image %>" alt="<%= app.title %>" class="app-image">
+              <% } %>
+              <div class="app-content">
+                <h3><%= app.title %></h3>
+                <div class="app-rating"><%= app.rating %></div>
+                <p class="app-description"><%= app.description %></p>
+                <div class="app-actions">
+                  <a href="/post/edit/<%= app._id %>" class="edit-btn">Edit</a>
+                  <form action="/post/delete/<%= app._id %>" method="POST" class="delete-form">
+                    <button type="submit" class="delete-btn">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
