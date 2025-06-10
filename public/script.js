@@ -7,6 +7,7 @@ createForm.addEventListener('submit', async(e)=>{
 	const bookData = new FormData(createForm)
 	const reqBody = Object.fromEntries(bookData)
         console.log(reqBody)
+		//window.locaion.href="/reviewed-apps"
         
     const response = await fetch('/post/add', {
 		method: 'POST',
