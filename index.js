@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 app.set("view engine", "ejs");
 
 app.use(express.json());
-
+/*
 const CommentSchema = new mongoose.Schema({
   comment: { type: String },
   pfpURL: { type: String },
@@ -47,8 +47,7 @@ app.get("/comments",async(req,res)=>{
 app.patch("/menu/update/:comment", async (req, res) => {
   const updatedComment = await Menu.findOneAndUpdate(
     { comment: req.params.comment },
-    { pfpURL: res.body.pfpURL },
-    { rating: req.body. rating},
+    { pfpURL: res.body.pfpURL, rating: req.body.rating},
     { new: true }
   );
   res.json(updatedComment);
@@ -60,11 +59,12 @@ app.delete("/menu/delete/:comment", async (req, res) => {
   });
   res.json(deletedComment);
 });
-
+*/
 const PostSchema = new mongoose.Schema({
-  title: { type: String },
-  descrption: { type: String },
+  app: { type: String },
+  rating: { type: String },
   image: { type: String },
+  description: {type: String},
 });
 
 const Post = mongoose.model("Post", PostSchema, "Posts");
@@ -79,7 +79,7 @@ app.post("/post/add", async(req,res)=>{
 res.json(post)
 })
 
-app.get("/post",async(req,res)=>{
+app.get("/",async(req,res)=>{
   const app = await Post.find({})
   res.render("post.ejs",{app})
 })
@@ -92,7 +92,7 @@ app.patch("/menu/update/:post", async (req, res) => {
   const updatedPost = await Menu.findOneAndUpdate(
     { title: req.params.title },
     { description: res.body.description },
-    { image: req.body. image},
+    //{ image: req.body. image},
     { new: true }
   );
   res.json(updatedPost);
